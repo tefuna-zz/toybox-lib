@@ -12,6 +12,7 @@ import com.tefuna.toybox.sort.common.printer.DefaultPrinter;
 import com.tefuna.toybox.sort.common.printer.JsonPrinter;
 //import com.tefuna.toybox.sort.merge.MergeSort;
 import com.tefuna.toybox.sort.selection.SelectionSort;
+import com.tefuna.toybox.sort.insertion.InsertionSort;
 import com.tefuna.toybox.sort.common.printer.Printer;
 
 public class Main {
@@ -33,8 +34,9 @@ public class Main {
         }
 
         // AbstractSort sort = new BubbleSort();
+        // SelectionSort sort = new SelectionSort();
+        InsertionSort sort = new InsertionSort();
         // MergeSort sort = new MergeSort();
-        SelectionSort sort = new SelectionSort();
 
 //        Printer printer = new DefaultPrinter();
         Printer printer = new JsonPrinter();

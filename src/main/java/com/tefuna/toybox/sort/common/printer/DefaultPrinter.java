@@ -2,11 +2,12 @@ package com.tefuna.toybox.sort.common.printer;
 
 import com.tefuna.toybox.sort.common.constant.SortMethod;
 import com.tefuna.toybox.sort.common.constant.SortName;
+import com.tefuna.toybox.sort.common.constant.SortOperation;
 import com.tefuna.toybox.sort.common.element.SortElement;
 import com.tefuna.toybox.sort.common.element.SortResult;
 
 /**
- * 
+ *
  * @author tefuna
  *
  */
@@ -29,14 +30,23 @@ public class DefaultPrinter implements Printer {
     }
 
     @Override
-    public void setStepExchanging(SortElement a, SortElement b) {
+    public void setStepExchanging(SortElement a, SortElement b, SortOperation ope) {
 
         StringBuilder builder = new StringBuilder("[");
         builder.append(a.toString() + ", ");
-        builder.append(b.toString() + "]");
+        builder.append(b.toString() + ", ");
+        builder.append(ope.toString() + "]");
 
         System.out.println("step: " + builder.toString());
     }
+
+    @Override
+    public void setStepInsertion(SortElement[] array, int from, int to) {
+
+      // @TODO
+
+    }
+
 
     @Override
     public void setSortName(SortName sortName) {
