@@ -1,4 +1,4 @@
-package com.tefuna.toybox.sort.bubble;
+package com.tefuna.toybox.sort.algorithm;
 
 import com.tefuna.toybox.sort.common.constant.SortMethod;
 import com.tefuna.toybox.sort.common.constant.SortName;

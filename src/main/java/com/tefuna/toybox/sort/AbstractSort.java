@@ -1,7 +1,5 @@
 package com.tefuna.toybox.sort;
 
-import java.util.Arrays;
-
 import com.tefuna.toybox.sort.common.constant.SortMethod;
 import com.tefuna.toybox.sort.common.constant.SortName;
 import com.tefuna.toybox.sort.common.element.SortElement;
@@ -85,7 +83,7 @@ abstract public class AbstractSort {
 
         int tId = a.getId();
         int tValue = a.getValue();
-        int tPrePosition = a.getPrePosition();
+        int tPrePosition = a.getPosition();
         // int tPosition = a.getPosition();
         // boolean tSorted = a.isSorted();
 
@@ -93,15 +91,14 @@ abstract public class AbstractSort {
         a.setValue(b.getValue());
         a.setPrePosition(b.getPosition());
 
-        b.setValue(tValue);
         b.setId(tId);
+        b.setValue(tValue);
         b.setPrePosition(tPrePosition);
     }
 
-
     public void insertSortElement(SortElement[] array, int from, int to) {
-      for (int i = from; i > to; i--) {
-        swapSortElement(array[i-1], array[i]);
-      }
+        for (int i = from; i > to; i--) {
+            swapSortElement(array[i - 1], array[i]);
+        }
     }
 }

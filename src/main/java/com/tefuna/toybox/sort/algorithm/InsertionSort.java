@@ -1,4 +1,4 @@
-package com.tefuna.toybox.sort.insertion;
+package com.tefuna.toybox.sort.algorithm;
 
 import com.tefuna.toybox.sort.common.constant.SortMethod;
 import com.tefuna.toybox.sort.common.constant.SortName;
@@ -24,39 +24,31 @@ public class InsertionSort extends AbstractSort {
     @Override
     public SortElement[] sort(SortElement[] array) {
 
-          printer = getPrinter();
+        printer = getPrinter();
 
-          for (int i = 1; i < array.length; i++) {
-                System.out.println("i = " + i + "array.length = " + array.length);
-              int insPos = -1;
-              for (int j = i - 1; j >= 0; j--) {
-                System.out.println("print exchange:" + j );
-                  printer.setStepExchanging(array[i], array[j], SortOperation.COMPARING);
-                  if (array[i].getValue() < array[j].getValue()) {
+        for (int i = 1; i < array.length; i++) {
+            int insPos = -1;
+            for (int j = i - 1; j >= 0; j--) {
+                printer.setStepExchanging(array[i], array[j], SortOperation.COMPARING);
+                if (array[i].getValue() < array[j].getValue()) {
                     if (j == 0) {
-                      insPos = 0;
-                      break;
+                        // æ“ª‚Ü‚Å‚¢‚Á‚Ä‚à‘}“üˆÊ’u‚ª“Á’è‚Å‚«‚È‚¢ = æ“ª‚ð‘}“üˆÊ’u‚Æ‚·‚éB
+                        insPos = 0;
+                        break;
                     }
-
-                  } else {
-
+                } else {
+                    // ‘}“üˆÊ’u‚ð“Á’èB
                     insPos = j + 1;
                     break;
-                  }
-              }
+                }
+            }
 
-
-              System.out.println("from  = " + i + ": to = " + insPos);
-              if (insPos != -1 && i > insPos) {
+            if (insPos != -1 && i > insPos) {
                 insertSortElement(array, i, insPos);
-                System.out.println("print insert:" + insPos );
                 printer.setStepInsertion(array, i, insPos);
+            }
+        }
 
-              }
-          }
-
-          return array;
-      }
-
-
+        return array;
+    }
 }

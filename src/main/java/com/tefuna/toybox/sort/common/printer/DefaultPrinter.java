@@ -43,10 +43,9 @@ public class DefaultPrinter implements Printer {
     @Override
     public void setStepInsertion(SortElement[] array, int from, int to) {
 
-      // @TODO
+        // @TODO
 
     }
-
 
     @Override
     public void setSortName(SortName sortName) {

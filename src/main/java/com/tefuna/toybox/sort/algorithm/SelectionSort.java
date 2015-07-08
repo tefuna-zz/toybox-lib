@@ -1,4 +1,4 @@
-package com.tefuna.toybox.sort.selection;
+package com.tefuna.toybox.sort.algorithm;
 
 import com.tefuna.toybox.sort.common.constant.SortMethod;
 import com.tefuna.toybox.sort.common.constant.SortName;
@@ -24,14 +24,14 @@ public class SelectionSort extends AbstractSort {
     @Override
     public SortElement[] sort(SortElement[] array) {
 
-          printer = getPrinter();
+        printer = getPrinter();
 
-          for (int i = 0; i < array.length; i++) {
-              int minIndex = searchMinIndex(array, i);
-              swapSortElement(array[i], array[minIndex]);
-              array[i].setSorted(true);
-              printer.setStepExchanging(array[i], array[minIndex], SortOperation.EXCHANGING);
-          }
+        for (int i = 0; i < array.length; i++) {
+            int minIndex = searchMinIndex(array, i);
+            swapSortElement(array[i], array[minIndex]);
+            array[i].setSorted(true);
+            printer.setStepExchanging(array[i], array[minIndex], SortOperation.EXCHANGING);
+        }
 
         return array;
     }
