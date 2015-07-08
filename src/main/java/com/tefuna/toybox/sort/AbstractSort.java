@@ -1,5 +1,8 @@
 package com.tefuna.toybox.sort;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.tefuna.toybox.sort.common.constant.SortMethod;
 import com.tefuna.toybox.sort.common.constant.SortName;
 import com.tefuna.toybox.sort.common.element.SortElement;
@@ -83,7 +86,7 @@ abstract public class AbstractSort {
 
         int tId = a.getId();
         int tValue = a.getValue();
-        int tPrePosition = a.getPosition();
+        int tPosition = a.getPosition();
         // int tPosition = a.getPosition();
         // boolean tSorted = a.isSorted();
 
@@ -93,12 +96,39 @@ abstract public class AbstractSort {
 
         b.setId(tId);
         b.setValue(tValue);
-        b.setPrePosition(tPrePosition);
+        b.setPrePosition(tPosition);
     }
 
-    public void insertSortElement(SortElement[] array, int from, int to) {
-        for (int i = from; i > to; i--) {
-            swapSortElement(array[i - 1], array[i]);
+    public void insertSortElementById(List<SortElement> list, SortElement se) {
+
+        int id = se.getId();
+        int[] ids = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+          ids[i] = list.get(i).getId();
         }
+
+
+        for (int i = 0; i < list.size(); i++) {
+          SortElement obj = searchSortElementById(list, ids[i]);
+          swapSortElement(se, obj);
+
+        }
+
+        // for (int i = from; i > to; i--) {
+        //     swapSortElement(array[i - 1], array[i]);
+        // }
+    }
+
+
+    private SortElement searchSortElementById(List<SortElement> list, int id) {
+
+      for (SortElement se : list) {
+        if (se.getId() == id) {
+          return se;
+        }
+      }
+
+      return null;
+
     }
 }

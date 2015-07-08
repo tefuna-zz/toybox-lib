@@ -3,6 +3,7 @@ package com.tefuna.toybox.sort.algorithm;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Arrays;
 
 import com.tefuna.toybox.sort.common.constant.SortMethod;
 import com.tefuna.toybox.sort.common.constant.SortName;
@@ -47,7 +48,7 @@ public class BogoSort extends AbstractSort {
     }
 
     /**
-     * 
+     *
      * @param array
      * @return
      */
@@ -64,7 +65,7 @@ public class BogoSort extends AbstractSort {
     }
 
     /**
-     * 
+     *
      * @param array
      * @return
      */
@@ -79,12 +80,14 @@ public class BogoSort extends AbstractSort {
             shuffled[i].setPrePosition(shuffled[i].getPosition());
             shuffled[i].setPosition(i);
         }
-        
+
         array = shuffled;
         shuffled = null;
 
-        // TODO 使い方違う。全exchanging stepを出したいだけ。
-        printer.setStepInsertion(array, array.length - 1, 0);
+        // TODO how to use is wrong.
+        List<SortElement> exchangeList = Arrays.asList(array);
+        printer.setStepAsExchangeList(exchangeList);
+
         return array;
     }
 }

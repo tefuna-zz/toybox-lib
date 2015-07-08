@@ -77,7 +77,13 @@ public class JsonPrinter implements Printer {
     }
 
     @Override
-    public void setStepInsertion(SortElement[] array, int from, int to) {
+    public void setStepAsExchangeList(List<SortElement> exchangeList) {
+
+        if (exchangeList.size() == 0) {
+           return;
+        } else if(exchangeList.size() == 1) {
+          throw new IllegalStateException("exchangeList.size() should be bigger than 2.");
+        }
 
         int nextSeq = this.result.getSteps().size() + 1;
 
@@ -85,16 +91,15 @@ public class JsonPrinter implements Printer {
             throw new IllegalStateException("cannot call before sort method.");
         }
 
-        //TODO SORT_METHODとは・・・動きをパターン化できると思ったけどもういらない？
+        //TODO SORT_METHOD will be xremoved
         switch (this.result.getMethod()) {
         case EXCHANGING:
             SortStepsExchanging stepsEx = new SortStepsExchanging();
 
             List<SortElement> swapList = new ArrayList<SortElement>();
-            
-            //TODO  これ反対でいいの？
-            for (int i = from; i >= to; i--) {
-                swapList.add(new SortElement(array[i]));
+
+            for (SortElement se : exchangeList) {
+              swapList.add(new SortElement(se));
             }
             stepsEx.setSeq(nextSeq);
             stepsEx.setOperation(SortOperation.EXCHANGING);

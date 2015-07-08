@@ -1,5 +1,9 @@
 package com.tefuna.toybox.sort.algorithm;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 import com.tefuna.toybox.sort.common.constant.SortMethod;
 import com.tefuna.toybox.sort.common.constant.SortName;
 import com.tefuna.toybox.sort.common.constant.SortOperation;
@@ -25,28 +29,50 @@ public class InsertionSort extends AbstractSort {
     public SortElement[] sort(SortElement[] array) {
 
         printer = getPrinter();
+        List<SortElement> exchangeList = new ArrayList<SortElement>();
 
         for (int i = 1; i < array.length; i++) {
-            int insPos = -1;
-            for (int j = i - 1; j >= 0; j--) {
-                printer.setStepExchanging(array[i], array[j], SortOperation.COMPARING);
-                if (array[i].getValue() < array[j].getValue()) {
-                    if (j == 0) {
-                        // æ“ª‚Ü‚Å‚¢‚Á‚Ä‚à‘}“üˆÊ’u‚ª“Á’è‚Å‚«‚È‚¢ = æ“ª‚ð‘}“üˆÊ’u‚Æ‚·‚éB
-                        insPos = 0;
-                        break;
-                    }
+            for (int j = i; j > 0; j--) {
+               System.out.println("aaa:" + array[j-1]);
+               System.out.println("bbb:" + array[i]);
+                printer.setStepExchanging(array[j-1], array[i], SortOperation.COMPARING);
+                if (array[j-1].getValue() > array[i].getValue()) {
+                  //TODO it is wrong.
+                  // swapSortElement(array[j-1], array[i]);
+                  exchangeList.add(array[j-1]);
                 } else {
-                    // ‘}“üˆÊ’u‚ð“Á’èB
-                    insPos = j + 1;
                     break;
                 }
             }
 
-            if (insPos != -1 && i > insPos) {
-                insertSortElement(array, i, insPos);
-                printer.setStepInsertion(array, i, insPos);
+
+            if (exchangeList.size() > 0) {
+              System.out.println("before:" + exchangeList);
+              exchangeList.add(array[i]);
+              System.out.println("after:" + exchangeList);
+
+              for (int j = exchangeList.size() - 1; j > 0; j--) {
+                swapSortElement(exchangeList.get(j), exchangeList.get(j-1));
+              }
+              // insertSortElementById(exchangeList, array[i]);
+
+
+              // insertSortElement(array, i, j);
+              //
+              // for (int k = 0; k < exchangeList.size()-1; k++) {
+              //   swapSortElement(exchangeList.get(exchangeList.size()-1), exchangeList.get(k));
+              // }
+
+
+              printer.setStepAsExchangeList(exchangeList);
+              exchangeList.clear();
             }
+
+            //
+            // if (insPos != -1 && i > insPos) {
+            //     insertSortElement(array, i, insPos);
+            //     printer.setStepInsertion(array, i, insPos);
+            // }
         }
 
         return array;

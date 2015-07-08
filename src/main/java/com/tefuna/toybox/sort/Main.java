@@ -21,7 +21,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        int arraysize = 100;
+        int arraysize = 10;
         SortElement[] original = new SortElement[arraysize];
         SortElement[] sortArray = new SortElement[arraysize];
         for (int i = 0; i < original.length; i++) {
@@ -37,12 +37,12 @@ public class Main {
 
         // BubbleSort sort = new BubbleSort();
         // SelectionSort sort = new SelectionSort();
-        // InsertionSort sort = new InsertionSort();
+        InsertionSort sort = new InsertionSort();
         // BogoSort sort = new BogoSort();
-        ShakerSort sort = new ShakerSort();
+        // ShakerSort sort = new ShakerSort();
         // MergeSort sort = new MergeSort();
 
-//         Printer printer = new DefaultPrinter();
+        // Printer printer = new DefaultPrinter();
         Printer printer = new JsonPrinter();
         sort.setPrinter(printer);
         // Printer printer = sort.getPrinter();

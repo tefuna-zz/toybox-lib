@@ -1,5 +1,9 @@
 package com.tefuna.toybox.sort.common.printer;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 import com.tefuna.toybox.sort.common.constant.SortMethod;
 import com.tefuna.toybox.sort.common.constant.SortName;
 import com.tefuna.toybox.sort.common.constant.SortOperation;
@@ -41,8 +45,7 @@ public class DefaultPrinter implements Printer {
     }
 
     @Override
-    public void setStepInsertion(SortElement[] array, int from, int to) {
-
+    public void setStepAsExchangeList(List<SortElement> exchangeList) {
         // @TODO
 
     }
