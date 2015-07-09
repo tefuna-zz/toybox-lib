@@ -11,8 +11,7 @@ import com.tefuna.toybox.sort.common.constant.SortName;
 import com.tefuna.toybox.sort.common.constant.SortOperation;
 import com.tefuna.toybox.sort.common.element.SortElement;
 import com.tefuna.toybox.sort.common.element.SortResult;
-import com.tefuna.toybox.sort.common.element.SortSteps;
-import com.tefuna.toybox.sort.common.element.SortStepsExchanging;
+import com.tefuna.toybox.sort.common.element.SortStep;
 
 public class JsonPrinter implements Printer {
 
@@ -34,11 +33,6 @@ public class JsonPrinter implements Printer {
     }
 
     @Override
-    public void setArray(SortElement[] array) {
-        // TODO
-    }
-
-    @Override
     public void setOriginal(SortElement[] original) {
         this.result.setOriginal(original);
     }
@@ -49,72 +43,48 @@ public class JsonPrinter implements Printer {
     }
 
     @Override
-    public void setStepExchanging(SortElement a, SortElement b, SortOperation ope) {
+    public void registStep(SortElement[] array, SortElement a, SortElement b, SortOperation ope) {
 
-        int nextSeq = this.result.getSteps().size() + 1;
+        List<SortElement> list = new ArrayList<SortElement>(2);
+        list.add(a);
+        list.add(b);
 
-        if (this.result.getMethod() == null) {
-            throw new IllegalStateException("cannot call before sort method.");
-        }
-
-        switch (this.result.getMethod()) {
-        case EXCHANGING:
-            SortStepsExchanging stepsEx = new SortStepsExchanging();
-
-            List<SortElement> swapList = new ArrayList<SortElement>();
-            swapList.add(new SortElement(a));
-            swapList.add(new SortElement(b));
-
-            stepsEx.setSeq(nextSeq);
-            stepsEx.setOperation(ope);
-            stepsEx.setSwapElement(swapList);
-            result.getSteps().add(stepsEx);
-
-            break;
-        default:
-            throw new IllegalStateException("unexpected sort method.");
-        }
+        registStepAsList(array, list, ope);
     }
 
     @Override
-    public void setStepAsExchangeList(List<SortElement> exchangeList) {
+    public void registStepAsList(SortElement[] array, List<SortElement> list, SortOperation ope) {
 
-        if (exchangeList.size() == 0) {
-           return;
-        } else if(exchangeList.size() == 1) {
-          throw new IllegalStateException("exchangeList.size() should be bigger than 2.");
+        if (list.size() < 2) {
+            throw new IllegalStateException("list.size() should be over 2.");
         }
 
-        int nextSeq = this.result.getSteps().size() + 1;
-
-        if (this.result.getMethod() == null) {
-            throw new IllegalStateException("cannot call before sort method.");
+        if (SortOperation.COMPARING == ope && list.size() != 2) {
+            throw new IllegalStateException("COMPARING list.size() should be 2.");
         }
 
-        //TODO SORT_METHOD will be xremoved
-        switch (this.result.getMethod()) {
-        case EXCHANGING:
-            SortStepsExchanging stepsEx = new SortStepsExchanging();
-
-            List<SortElement> swapList = new ArrayList<SortElement>();
-
-            for (SortElement se : exchangeList) {
-              swapList.add(new SortElement(se));
-            }
-            stepsEx.setSeq(nextSeq);
-            stepsEx.setOperation(SortOperation.EXCHANGING);
-            stepsEx.setSwapElement(swapList);
-            result.getSteps().add(stepsEx);
-
-            break;
-        default:
-            throw new IllegalStateException("unexpected sort method.");
+        List<SortElement> swapList = new ArrayList<SortElement>();
+        for (SortElement se : list) {
+            swapList.add(new SortElement(se));
         }
+        
+        int[] valueArray = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            valueArray[i] = array[i].getValue();
+        }
+
+        SortStep steps = new SortStep();
+        steps.setSeq(this.result.getSteps().size() + 1);
+        steps.setOperation(ope);
+        steps.setArray(valueArray);
+        steps.setSwapElement(swapList);
+        result.getSteps().add(steps);
+
     }
 
     @Override
     public void updateSorted(int id, boolean sorted) {
-        List<SortSteps> steps = this.result.getSteps();
+        List<SortStep> steps = this.result.getSteps();
         steps.get(steps.size() - 1).updateSorted(id, sorted);
     };
 

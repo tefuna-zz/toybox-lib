@@ -33,10 +33,10 @@ public class ShakerSort extends AbstractSort {
 
             // from front (top).
             for (int i = topIdx; i < btmIdx; i++) {
-                printer.setStepExchanging(array[i], array[i + 1], SortOperation.COMPARING);
+                printer.registStep(array, array[i], array[i + 1], SortOperation.COMPARING);
                 if (array[i].getValue() > array[i + 1].getValue()) {
                     swapSortElement(array[i], array[i + 1]);
-                    printer.setStepExchanging(array[i], array[i + 1], SortOperation.EXCHANGING);
+                    printer.registStep(array, array[i], array[i + 1], SortOperation.EXCHANGING);
                 }
             }
             printer.updateSorted(array[btmIdx].getId(), true);
@@ -49,10 +49,10 @@ public class ShakerSort extends AbstractSort {
 
             // from back (bottom).
             for (int i = btmIdx - 1; i > topIdx - 1; i--) {
-                printer.setStepExchanging(array[i - 1], array[i], SortOperation.COMPARING);
+                printer.registStep(array, array[i - 1], array[i], SortOperation.COMPARING);
                 if (array[i - 1].getValue() > array[i].getValue()) {
                     swapSortElement(array[i - 1], array[i]);
-                    printer.setStepExchanging(array[i - 1], array[i], SortOperation.EXCHANGING);
+                    printer.registStep(array, array[i - 1], array[i], SortOperation.EXCHANGING);
                 }
             }
             printer.updateSorted(array[topIdx - 1].getId(), true);

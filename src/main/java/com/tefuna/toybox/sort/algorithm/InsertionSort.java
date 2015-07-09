@@ -3,7 +3,6 @@ package com.tefuna.toybox.sort.algorithm;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import com.tefuna.toybox.sort.common.constant.SortMethod;
 import com.tefuna.toybox.sort.common.constant.SortName;
 import com.tefuna.toybox.sort.common.constant.SortOperation;
@@ -33,46 +32,21 @@ public class InsertionSort extends AbstractSort {
 
         for (int i = 1; i < array.length; i++) {
             for (int j = i; j > 0; j--) {
-               System.out.println("aaa:" + array[j-1]);
-               System.out.println("bbb:" + array[i]);
-                printer.setStepExchanging(array[j-1], array[i], SortOperation.COMPARING);
-                if (array[j-1].getValue() > array[i].getValue()) {
-                  //TODO it is wrong.
-                  // swapSortElement(array[j-1], array[i]);
-                  exchangeList.add(array[j-1]);
+                printer.registStep(array, array[j - 1], array[i], SortOperation.COMPARING);
+                if (array[j - 1].getValue() > array[i].getValue()) {
+                    exchangeList.add(0, array[j - 1]);
                 } else {
                     break;
                 }
             }
 
-
             if (exchangeList.size() > 0) {
-              System.out.println("before:" + exchangeList);
-              exchangeList.add(array[i]);
-              System.out.println("after:" + exchangeList);
+                exchangeList.add(array[i]);
+                shiftLastElement(exchangeList);
 
-              for (int j = exchangeList.size() - 1; j > 0; j--) {
-                swapSortElement(exchangeList.get(j), exchangeList.get(j-1));
-              }
-              // insertSortElementById(exchangeList, array[i]);
-
-
-              // insertSortElement(array, i, j);
-              //
-              // for (int k = 0; k < exchangeList.size()-1; k++) {
-              //   swapSortElement(exchangeList.get(exchangeList.size()-1), exchangeList.get(k));
-              // }
-
-
-              printer.setStepAsExchangeList(exchangeList);
-              exchangeList.clear();
+                printer.registStepAsList(array, exchangeList, SortOperation.EXCHANGING);
+                exchangeList.clear();
             }
-
-            //
-            // if (insPos != -1 && i > insPos) {
-            //     insertSortElement(array, i, insPos);
-            //     printer.setStepInsertion(array, i, insPos);
-            // }
         }
 
         return array;

@@ -55,7 +55,7 @@ public class BogoSort extends AbstractSort {
     private boolean isSorted(SortElement[] array) {
 
         for (int i = 1; i < array.length; i++) {
-            printer.setStepExchanging(array[i - 1], array[i], SortOperation.COMPARING);
+            printer.registStep(array, array[i - 1], array[i], SortOperation.COMPARING);
             if (array[i - 1].getValue() > array[i].getValue()) {
                 return false;
             }
@@ -84,9 +84,8 @@ public class BogoSort extends AbstractSort {
         array = shuffled;
         shuffled = null;
 
-        // TODO how to use is wrong.
         List<SortElement> exchangeList = Arrays.asList(array);
-        printer.setStepAsExchangeList(exchangeList);
+        printer.registStepAsList(array, exchangeList, SortOperation.EXCHANGING);
 
         return array;
     }

@@ -12,7 +12,7 @@ public class SortResult {
     private SortMethod method;
     private SortElement[] original;
     private SortElement[] complete;
-    private List<SortSteps> steps = new ArrayList<SortSteps>();
+    private List<SortStep> steps = new ArrayList<SortStep>();
     private long spent;
 
     public SortName getName() {
@@ -47,11 +47,11 @@ public class SortResult {
         this.complete = complete;
     }
 
-    public List<SortSteps> getSteps() {
+    public List<SortStep> getSteps() {
         return steps;
     }
 
-    public void setSteps(List<SortSteps> steps) {
+    public void setSteps(List<SortStep> steps) {
         this.steps = steps;
     }
 

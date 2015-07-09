@@ -1,8 +1,6 @@
 package com.tefuna.toybox.sort.common.printer;
 
-import java.util.ArrayList;
 import java.util.List;
-
 
 import com.tefuna.toybox.sort.common.constant.SortMethod;
 import com.tefuna.toybox.sort.common.constant.SortName;
@@ -40,13 +38,6 @@ public interface Printer {
 
     /**
      *
-     * @param array
-     * @return
-     */
-    public void setArray(SortElement[] array);
-
-    /**
-     *
      * @param original
      */
     public void setOriginal(SortElement[] original);
@@ -58,20 +49,21 @@ public interface Printer {
     public void setComplete(SortElement[] complete);
 
     /**
-     *
+     * 
+     * @param array
      * @param a
      * @param b
-     * @return
+     * @param ope
      */
-    public void setStepExchanging(SortElement a, SortElement b, SortOperation ope);
+    public void registStep(SortElement[] array, SortElement a, SortElement b, SortOperation ope);
 
-
-    public void setStepAsExchangeList(List<SortElement> exchangeList);
-
-
-    // public String printStepExchanging(SortElement a, SortElement b);
-    // public String printStepExchanging(SortElement a, SortElement b);
-    // public String printStepExchanging(SortElement a, SortElement b);
+    /**
+     * 
+     * @param array
+     * @param list
+     * @param ope
+     */
+    public void registStepAsList(SortElement[] array, List<SortElement> list, SortOperation ope);
 
     /**
      *

@@ -30,7 +30,7 @@ public class SelectionSort extends AbstractSort {
             int minIndex = searchMinIndex(array, i);
             swapSortElement(array[i], array[minIndex]);
             array[i].setSorted(true);
-            printer.setStepExchanging(array[i], array[minIndex], SortOperation.EXCHANGING);
+            printer.registStep(array, array[i], array[minIndex], SortOperation.EXCHANGING);
         }
 
         return array;
@@ -51,7 +51,7 @@ public class SelectionSort extends AbstractSort {
         int minIndex = start;
         int minValue = array[start].getValue();
         for (int i = start + 1; i < array.length; i++) {
-            printer.setStepExchanging(array[start], array[i], SortOperation.COMPARING);
+            printer.registStep(array, array[start], array[i], SortOperation.COMPARING);
             if (minValue > array[i].getValue()) {
                 minIndex = i;
                 minValue = array[i].getValue();
