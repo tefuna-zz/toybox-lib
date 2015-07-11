@@ -32,13 +32,13 @@ abstract public class AbstractSort {
         printer.setOriginal(original);
 
         long start = System.currentTimeMillis();
-        sort(array);
+        SortElement[] complete = sort(array);
         long end = System.currentTimeMillis();
 
-        printer.setComplete(array);
+        printer.setComplete(complete);
         printer.setTimeSpent(end - start);
 
-        return array;
+        return complete;
     }
 
     /**
