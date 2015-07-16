@@ -5,7 +5,6 @@ import com.tefuna.toybox.sort.common.constant.SortMethod;
 import com.tefuna.toybox.sort.common.constant.SortName;
 import com.tefuna.toybox.sort.common.constant.SortOperation;
 import com.tefuna.toybox.sort.common.constant.SortOrder;
-import com.tefuna.toybox.sort.common.constant.SortProperty;
 import com.tefuna.toybox.sort.common.element.SortElement;
 import com.tefuna.toybox.sort.common.printer.Printer;
 
@@ -29,7 +28,7 @@ public class BitonicSort extends AbstractSort {
 
         printer = getPrinter();
         all = array;
-        
+
         return sortBitonic(array, SortOrder.ASC);
     }
 

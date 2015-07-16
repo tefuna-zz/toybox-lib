@@ -11,6 +11,8 @@ import com.tefuna.toybox.sort.algorithm.BogoSort;
 import com.tefuna.toybox.sort.algorithm.BubbleSort;
 import com.tefuna.toybox.sort.algorithm.GnomeSort;
 import com.tefuna.toybox.sort.algorithm.InsertionSort;
+import com.tefuna.toybox.sort.algorithm.MergeSort;
+import com.tefuna.toybox.sort.algorithm.QuickSort;
 import com.tefuna.toybox.sort.algorithm.SelectionSort;
 import com.tefuna.toybox.sort.algorithm.ShakerSort;
 import com.tefuna.toybox.sort.algorithm.ShellSort;
@@ -25,7 +27,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        int arraysize = 30;
+        int arraysize = 100;
         SortElement[] original = new SortElement[arraysize];
         SortElement[] sortArray = new SortElement[arraysize];
         for (int i = 0; i < original.length; i++) {
@@ -46,13 +48,14 @@ public class Main {
         // ShakerSort sort = new ShakerSort();
         // ShellSort sort = new ShellSort();
         // GnomeSort sort = new GnomeSort();
-        BitonicSort sort = new BitonicSort();
-        // MergeSort sort = new MergeSort();
-        
-        if (sort instanceof BitonicSort) {
-            original = fillToBitonic(original);
-            sortArray = fillToBitonic(sortArray);
-        }
+        MergeSort sort = new MergeSort();
+        // QuickSort sort = new QuickSort();
+
+        // BitonicSort sort = new BitonicSort();
+        // if (sort instanceof BitonicSort) {
+        // original = fillToBitonic(original);
+        // sortArray = fillToBitonic(sortArray);
+        // }
 
         // Printer printer = new DefaultPrinter();
         Printer printer = new JsonPrinter();
