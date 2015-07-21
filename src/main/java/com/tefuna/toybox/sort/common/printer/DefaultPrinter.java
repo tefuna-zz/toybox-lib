@@ -34,6 +34,11 @@ public class DefaultPrinter implements Printer {
     }
 
     @Override
+    public void registStepToComplete(SortElement[] array, List<SortElement> list) {
+        // TODO
+    }
+
+    @Override
     public void setSortName(SortName sortName) {
         System.out.println("name: " + sortName.name());
     }
@@ -70,8 +75,13 @@ public class DefaultPrinter implements Printer {
     }
 
     private void printArray(SortElement[] array) {
-        // TODO
-        System.out.println("printArray(); implementation later.");
-    }
 
+        StringBuilder builder = new StringBuilder("[");
+        for (int i = 0; i < array.length - 1; i++) {
+            builder.append(array[i].getValue() + ", ");
+        }
+        builder.append(array[array.length - 1].getValue() + "]");
+
+        System.out.println("array: " + builder.toString());
+    }
 }

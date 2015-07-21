@@ -10,8 +10,10 @@ import com.tefuna.toybox.sort.algorithm.BitonicSort;
 import com.tefuna.toybox.sort.algorithm.BogoSort;
 import com.tefuna.toybox.sort.algorithm.BubbleSort;
 import com.tefuna.toybox.sort.algorithm.GnomeSort;
+import com.tefuna.toybox.sort.algorithm.HeapSort;
 import com.tefuna.toybox.sort.algorithm.InsertionSort;
 import com.tefuna.toybox.sort.algorithm.MergeSort;
+import com.tefuna.toybox.sort.algorithm.OddEvenSort;
 import com.tefuna.toybox.sort.algorithm.QuickSort;
 import com.tefuna.toybox.sort.algorithm.SelectionSort;
 import com.tefuna.toybox.sort.algorithm.ShakerSort;
@@ -27,7 +29,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        int arraysize = 100;
+        int arraysize = 20;
         SortElement[] original = new SortElement[arraysize];
         SortElement[] sortArray = new SortElement[arraysize];
         for (int i = 0; i < original.length; i++) {
@@ -47,9 +49,11 @@ public class Main {
         // BogoSort sort = new BogoSort();
         // ShakerSort sort = new ShakerSort();
         // ShellSort sort = new ShellSort();
-        // GnomeSort sort = new GnomeSort();
-        MergeSort sort = new MergeSort();
+        GnomeSort sort = new GnomeSort();
+        // MergeSort sort = new MergeSort();
         // QuickSort sort = new QuickSort();
+        // HeapSort sort = new HeapSort();
+        // OddEvenSort sort = new OddEvenSort();
 
         // BitonicSort sort = new BitonicSort();
         // if (sort instanceof BitonicSort) {

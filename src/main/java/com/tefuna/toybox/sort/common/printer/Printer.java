@@ -66,6 +66,13 @@ public interface Printer {
     public void registStepAsList(SortElement[] array, List<SortElement> list, SortOperation ope);
 
     /**
+     * 
+     * @param array
+     * @param list
+     */
+    public void registStepToComplete(SortElement[] array, List<SortElement> list);
+
+    /**
      *
      * @param id
      * @param sorted

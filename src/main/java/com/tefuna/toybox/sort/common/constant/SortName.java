@@ -19,7 +19,8 @@ public enum SortName {
     SHAKER_SORT("12", "shaker sort"),
     GNOME_SORT("13", "gnome sort"),
     BITONIC_SORT("14", "bitonic sort"),
-    BOGO_SORT("15", "bogo sort");
+    BOGO_SORT("15", "bogo sort"),
+    ODDEVEN_SORT("16", "odd-even sort");
 
     private String value;
     private String dispName;

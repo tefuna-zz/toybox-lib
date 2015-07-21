@@ -5,7 +5,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum SortOperation {
 
     COMPARING("01", "comparing"),
-    EXCHANGING("02", "exchanging");
+    EXCHANGING("02", "exchanging"),
+    COMPLETING("03", "completing");
 
     private String value;
     private String dispName;

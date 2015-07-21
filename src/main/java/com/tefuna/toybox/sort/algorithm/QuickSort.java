@@ -1,5 +1,8 @@
 package com.tefuna.toybox.sort.algorithm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.tefuna.toybox.sort.AbstractSort;
 import com.tefuna.toybox.sort.common.constant.SortMethod;
 import com.tefuna.toybox.sort.common.constant.SortName;
@@ -10,7 +13,6 @@ import com.tefuna.toybox.sort.common.printer.Printer;
 public class QuickSort extends AbstractSort {
 
     Printer printer;
-    int sortedIdx = 0;
 
     @Override
     public SortName getSortName() {
@@ -39,15 +41,6 @@ public class QuickSort extends AbstractSort {
      * @return
      */
     private void sortQuick(SortElement[] array, int left, int right) {
-
-//        if (this.sortedIdx >= right) {
-//            sortedIdx = right;
-//            for (int i = 0; i< this.sortedIdx; i++) {
-//                printer.up
-//            }
-//            
-//            
-//        }
 
         if (left >= right) {
             return;
@@ -80,7 +73,15 @@ public class QuickSort extends AbstractSort {
 
         sortQuick(array, left, i - 1);
         sortQuick(array, j + 1, right);
-        
+
+        // here, left to right element is completed sort.
+        List<SortElement> list = new ArrayList<SortElement>();
+        for (int x = left; x <= right; x++) {
+            list.add(array[x]);
+        }
+        printer.registStepToComplete(array, list);
+
+        return;
     }
 
     /**

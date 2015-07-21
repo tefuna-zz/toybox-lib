@@ -55,19 +55,17 @@ public class JsonPrinter implements Printer {
     @Override
     public void registStepAsList(SortElement[] array, List<SortElement> list, SortOperation ope) {
 
-        if (list.size() < 2) {
+        if (ope == SortOperation.COMPARING && list.size() != 2) {
+            throw new IllegalStateException("list.size() should be 2.");
+        } else if (ope == SortOperation.EXCHANGING && list.size() < 2) {
             throw new IllegalStateException("list.size() should be over 2.");
-        }
-
-        if (SortOperation.COMPARING == ope && list.size() != 2) {
-            throw new IllegalStateException("COMPARING list.size() should be 2.");
         }
 
         List<SortElement> swapList = new ArrayList<SortElement>();
         for (SortElement se : list) {
             swapList.add(new SortElement(se));
         }
-        
+
         int[] valueArray = new int[array.length];
         for (int i = 0; i < array.length; i++) {
             valueArray[i] = array[i].getValue();
@@ -80,6 +78,14 @@ public class JsonPrinter implements Printer {
         steps.setSwapElement(swapList);
         result.getSteps().add(steps);
 
+    }
+
+    @Override
+    public void registStepToComplete(SortElement[] array, List<SortElement> list) {
+        for (SortElement se : list) {
+            se.setSorted(true);
+        }
+        registStepAsList(array, list, SortOperation.COMPLETING);
     }
 
     @Override
