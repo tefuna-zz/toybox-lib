@@ -29,7 +29,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        int arraysize = 20;
+        int arraysize = 7;
         SortElement[] original = new SortElement[arraysize];
         SortElement[] sortArray = new SortElement[arraysize];
         for (int i = 0; i < original.length; i++) {
@@ -46,10 +46,10 @@ public class Main {
         // BubbleSort sort = new BubbleSort();
         // SelectionSort sort = new SelectionSort();
         // InsertionSort sort = new InsertionSort();
-        // BogoSort sort = new BogoSort();
+        BogoSort sort = new BogoSort();
         // ShakerSort sort = new ShakerSort();
         // ShellSort sort = new ShellSort();
-        GnomeSort sort = new GnomeSort();
+        // GnomeSort sort = new GnomeSort();
         // MergeSort sort = new MergeSort();
         // QuickSort sort = new QuickSort();
         // HeapSort sort = new HeapSort();
